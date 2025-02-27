@@ -1,0 +1,47 @@
+from typing import Any, Literal, Self
+
+from pydantic import BaseModel, HttpUrl, ValidationError, model_validator
+
+from pyfall.models.base import BaseAPIModel
+from pyfall.models.cards import Card
+from pyfall.models.rulings import Ruling
+from pyfall.models.sets import Set
+from pyfall.models.symbols import CardSymbol
+
+CLASS_LOOKUP = {
+    "card": Card,
+    "card_symbol": CardSymbol,
+    "ruling": Ruling,
+    "set": Set
+}
+
+class APIError(BaseModel):
+    status: int
+    code: str
+    details: str
+    type: str | None = None
+    warnings: list[str] | None = None
+    
+class APIList(BaseAPIModel):
+    object: Literal["list"]
+    data: list[Card | CardSymbol | Ruling | Set]
+    has_more: bool
+    next_page: HttpUrl | None = None
+    total_cards: int | None = None
+    warnings: list[str] | None = None
+    
+    @model_validator(mode="before")
+    @classmethod
+    def validate_data(cls, data: Any) -> Any:
+        if data.get("object") == "list":
+            for item in data.get("data"):
+                item["_client"] = data["_client"]
+                item = CLASS_LOOKUP.get(item.get("object"))(**item)
+        return data
+    
+    async def get_next_page(self) -> Self | None:
+        if self.has_more:
+            params = dict(self.next_page.query_params())
+            params.pop("format", None)
+            return await self._client.cards_search(**params)
+        return None
