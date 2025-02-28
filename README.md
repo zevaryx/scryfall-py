@@ -1,3 +1,3 @@
 # Pyfall
 
-An async Scryfall API wrapper written
+An async Scryfall API wrapper written in Python
