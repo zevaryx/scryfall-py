@@ -1,6 +1,6 @@
 [project]
 name = "scryfall-py"
-version = "0.1.0"
+version = "0.1.1"
 description = "An async Scryfall API wrapper"
 license = { text = "MIT License" }
 readme = "README.md"
@@ -16,8 +16,14 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Utilities",
 ]
+authors = [{name="zevaryx", email ="zevaryx@gmail.com"}]
 
 dependencies = ["httpx>=0.28.1", "pydantic>=2.10.6"]
+
+[project.urls]
+Homepage = "https://github.com/zevaryx/scryfall-py"
+Repository = "https://github.com/zevaryx/scryfall-py"
+Issues = "https://github.com/zevaryx/scryfall-py/issues"
 
 [dependency-groups]
 dev = [
