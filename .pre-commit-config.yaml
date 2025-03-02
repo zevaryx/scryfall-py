@@ -1,0 +1,41 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: requirements-txt-fixer
+        name: Requirements
+        types: [file]
+        exclude_types: ["image"]
+      - id: debug-statements
+        name: Debugging
+        language: python
+        types: [file, python]
+        exclude_types: ["image"]
+      # - id: trailing-whitespace
+      #   name: Trailing Whitespace
+      #   language: python
+      #   types: [file]
+      #   exclude: ^\.vscode/
+      #   exclude_types: ["image", "binary", "executable"]
+      # - id: end-of-file-fixer
+      #   name: EOF Newlines
+      #   language: python
+      #   types: [file]
+      #   exclude_types: ["image", "binary", "executable"]
+      - id: check-yaml
+        name: YAML Structure
+        language: python
+        args: ["--unsafe"]
+      - id: check-toml
+        name: TOML Structure
+      - id: check-merge-conflict
+        name: Merge Conflicts
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.7.4
+    hooks:
+      # Run the linter.
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+      # Run the formatter.
+      - id: ruff-format

@@ -4,6 +4,7 @@ from pydantic import BaseModel, HttpUrl
 
 from pyfall.models.enums import Color
 
+
 class CardSymbol(BaseModel):
     object: Literal["card_symbol"]
     symbol: str

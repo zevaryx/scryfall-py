@@ -1,7 +1,8 @@
 from datetime import datetime
+from uuid import UUID
 
 from pydantic import BaseModel, HttpUrl
-from pydantic.types import UUID
+
 
 class BulkData(BaseModel):
     id: UUID

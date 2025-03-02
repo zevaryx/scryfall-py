@@ -1,17 +1,16 @@
 from datetime import date
 from typing import Any, Literal, TYPE_CHECKING
+from uuid import UUID
 
 from pydantic import BaseModel, HttpUrl, field_validator
-from pydantic.types import UUID
 
-# from pyfall.models.api import APIList
 from pyfall.models.base import BaseAPIModel
 from pyfall.models.enums import Color
 
 if TYPE_CHECKING:
-    from pyfall.client import Pyfall
     from pyfall.models.rulings import Ruling
     from pyfall.models.sets import Set
+
 
 class RelatedCard(BaseModel):
     id: UUID
@@ -20,7 +19,8 @@ class RelatedCard(BaseModel):
     name: str
     type_line: str
     uri: HttpUrl
-    
+
+
 class CardFace(BaseModel):
     artist: str | None = None
     artist_id: str | None = None
@@ -45,12 +45,13 @@ class CardFace(BaseModel):
     toughness: str | None = None
     type_line: str | None = None
     watermark: str | None = None
-    
+
+
 class Preview(BaseModel):
     previewed_at: date | None = None
     source_uri: HttpUrl | None = None
     source: str | None = None
-    
+
     @field_validator("source_uri", mode="before")
     @classmethod
     def validate_source_uri(cls, value: Any) -> Any:
@@ -58,6 +59,7 @@ class Preview(BaseModel):
             if len(value) > 0:
                 return HttpUrl(value)
         return None
+
 
 class Card(BaseAPIModel):
     # Core fields
@@ -77,7 +79,7 @@ class Card(BaseAPIModel):
     rulings_uri: HttpUrl
     scryfall_uri: HttpUrl
     uri: HttpUrl
-    
+
     # Gameplay fields
     all_parts: list[RelatedCard] | None = None
     card_faces: list[CardFace] | None = None
@@ -102,7 +104,7 @@ class Card(BaseAPIModel):
     reserved: bool
     toughness: str | None = None
     type_line: str
-    
+
     # Print fields
     artist: str | None = None
     artist_ids: list[UUID] | None = None
@@ -150,12 +152,11 @@ class Card(BaseAPIModel):
     security_stamp: Literal["oval", "triangle", "acorn", "circle", "arena", "heart"] | None = None
     watermark: str | None = None
     preview: Preview | None = None
-    
+
     async def get_set(self) -> "Set":
         """Get set card is a part of."""
         return await self._client.get_set_by_id(self.set_id)
-    
-    async def get_rulings(self) -> "Ruling":
+
+    async def get_rulings(self) -> list["Ruling"]:
         """Get rulings for card."""
         return await self._client.get_rulings_by_card_id(self.id)
-        

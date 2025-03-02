@@ -1,14 +1,14 @@
 from datetime import date
 from typing import Literal, TYPE_CHECKING
+from uuid import UUID
 
 from pydantic import HttpUrl
-from pydantic.types import UUID
 
 from pyfall.models.base import BaseAPIModel
 
 if TYPE_CHECKING:
-    from pyfall.client import Pyfall
     from pyfall.models.api import APIList
+
 
 class Set(BaseAPIModel):
     object: Literal["set"]
@@ -32,8 +32,8 @@ class Set(BaseAPIModel):
     uri: HttpUrl
     icon_svg_uri: HttpUrl
     search_uri: HttpUrl
-    
+
     async def get_cards(self) -> "APIList":
         """Get a list of cards from the set."""
         params = dict(self.search_uri.query_params())
-        return await self._client.search_cards(**params)
+        return await self._client.search_cards(**params)  # type: ignore

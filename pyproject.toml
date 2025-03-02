@@ -1,18 +1,141 @@
 [project]
 name = "pyfall"
 version = "0.1.0"
-description = "Add your description here"
+description = "An async Scryfall API wrapper"
+license = { text = "MIT License" }
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = [
-    "httpx>=0.28.1",
-    "pydantic>=2.10.6",
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: Hatch",
+    "Framework :: Sphinx",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
 ]
+
+dependencies = ["httpx>=0.28.1", "pydantic>=2.10.6"]
 
 [dependency-groups]
 dev = [
     "black>=25.1.0",
-    "ipython>=8.32.0",
+    "ipython>=9.0.0",
     "rich>=13.9.4",
-    "ruff>=0.9.7",
+    "ruff>=0.9.9",
+    "pre-commit>=4.0.1",
+    "pytest>=8.3.3",
+    "pytest-cov>=6.0.0",
+    "sphinx-toolbox>=3.9.0",
+    "sphinx>=8.2.1",
+    "sphinx-rtd-theme>=3.0.2",
+    "pytest-asyncio>=0.25.3",
 ]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+addopts = "--cov --cov-report term-missing --cov-report xml:coverage.xml --junitxml=report.xml"
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+skip = ["__init__.py"]
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[tool.pyright]
+useLibraryCodeForTypes = true
+reportMissingImports = false
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+output-format = "full"
+
+[tool.ruff.lint]
+task-tags = ["TODO", "FIXME", "XXX", "HACK", "REVIEW", "NOTE"]
+select = ["E", "F", "B", "Q", "RUF", "D", "ANN", "RET", "C"]
+ignore = [
+    "Q0",
+    "E501",
+    # These default to arguing with Black.  We might configure some of them eventually
+    "ANN1",
+    # These insist that we have Type Annotations for self and cls.
+    "D105",
+    "D107",
+    # Missing Docstrings in magic method and __init__
+    "D401",
+    # First line should be in imperative mood; try rephrasing
+    "D400",
+    "D415",
+    # First line should end with a period
+    "D106",
+    # Missing docstring in public nested class.  This doesn't work well with Metadata classes.
+    "D417",
+    # Missing argument in the docstring
+    "D406",
+    # Section name should end with a newline
+    "D407",
+    # Missing dashed underline after section
+    "D212",
+    # Multi-line docstring summary should start at the first line
+    "D404",
+    # First word of the docstring should not be This
+    "D203",
+    # 1 blank line required before class docstring
+
+    # Everything below this line is something we care about, but don't currently meet
+    "ANN001",
+    # Missing type annotation for function argument 'token'
+    "ANN002",
+    # Missing type annotation for *args
+    "ANN003",
+    # Missing type annotation for **kwargs
+    "ANN401",
+    # Dynamically typed expressions (typing.Any) are disallowed
+    #    "B009",
+    # Do not call getattr with a constant attribute value, it is not any safer than normal property access.
+    "B010",
+    # Do not call setattr with a constant attribute value, it is not any safer than normal property access.
+    "D100",
+    # Missing docstring in public module
+    "D101",
+    # ... class
+    "D102",
+    # ... method
+    "D103",
+    # ... function
+    "D104",
+    # ... package
+    "E712",
+    # Ignore == True because of Beanie
+    # Plugins we don't currently include: flake8-return
+    "RET503",
+    # missing explicit return at the  end of function ableto return non-None value.
+    "RET504",
+    # unecessary variable assignement before return statement.
+]
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
+
+[tool.ruff.lint.flake8-annotations]
+mypy-init-return = true
+suppress-dummy-args = true
+suppress-none-returning = true
+
+[tool.ruff.lint.flake8-errmsg]
+max-string-length = 20
+
+[tool.ruff.lint.mccabe]
+max-complexity = 13

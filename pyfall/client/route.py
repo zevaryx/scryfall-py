@@ -3,11 +3,12 @@ from urllib.parse import quote as _uriquote
 
 PAYLOAD_TYPE = dict[str, int | str | bool | list | None]
 
+
 class Route:
     BASE: ClassVar[str] = "https://api.scryfall.com"
     path: str
     params: dict[str, str | int | bool]
-    
+
     def __init__(self, method: str, path: str, **params: Any) -> None:
         self.path: str = path
         self.method: str = method
@@ -18,7 +19,7 @@ class Route:
 
     def __str__(self) -> str:
         return self.endpoint
-    
+
     @property
     def resolved_path(self) -> str:
         """The endpoint for this route, with all parameters resolved"""
@@ -32,11 +33,7 @@ class Route:
     @property
     def resolved_endpoint(self) -> str:
         """The endpoint for this route, with all major parameters resolved"""
-        path = self.path
-        for key, value in self.major_params.items():
-            path = path.replace(f"{{{key}}}", str(value))
-
-        return f"{self.method} {path}"
+        return f"{self.method} {self.path}"
 
     @property
     def url(self) -> str:

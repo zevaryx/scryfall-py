@@ -3,7 +3,8 @@ from typing import Protocol, Any, TypeVar
 
 from pyfall.client.route import Route
 
-T_co = TypeVar("T", covariant=True)
+T_co = TypeVar("T", covariant=True)  # type: ignore
+
 
 @typing.runtime_checkable
 class CanRequest(Protocol[T_co]):
