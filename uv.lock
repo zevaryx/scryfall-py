@@ -717,7 +717,7 @@ wheels = [
 ]
 
 [[package]]
-name = "pyfall"
+name = "scryfall"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [

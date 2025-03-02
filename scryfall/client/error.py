@@ -3,11 +3,11 @@ from typing import TYPE_CHECKING
 import httpx
 
 if TYPE_CHECKING:
-    from pyfall.client.route import Route
+    from scryfall.client.route import Route
 
 
 class LibraryException(Exception):
-    """Base Exception of pyfall."""
+    """Base Exception of scryfall-py."""
 
 
 class HTTPException(LibraryException):

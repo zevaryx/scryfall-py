@@ -4,12 +4,12 @@ from uuid import UUID
 
 from pydantic import BaseModel, HttpUrl, field_validator
 
-from pyfall.models.base import BaseAPIModel
-from pyfall.models.enums import Color
+from scryfall.models.base import BaseAPIModel
+from scryfall.models.enums import Color
 
 if TYPE_CHECKING:
-    from pyfall.models.rulings import Ruling
-    from pyfall.models.sets import Set
+    from scryfall.models.rulings import Ruling
+    from scryfall.models.sets import Set
 
 
 class RelatedCard(BaseModel):

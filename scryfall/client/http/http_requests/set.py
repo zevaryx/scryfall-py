@@ -1,9 +1,9 @@
 from uuid import UUID
 
-from pyfall.client.route import Route
-from pyfall.models.api import APIList
-from pyfall.models.sets import Set
-from pyfall.models.internal.protocols import CanRequest
+from scryfall.client.route import Route
+from scryfall.models.api import APIList
+from scryfall.models.sets import Set
+from scryfall.models.internal.protocols import CanRequest
 
 
 class SetRequests(CanRequest):

@@ -6,7 +6,7 @@ on:
       - published
 
 env:
-  PACKAGE_NAME: pyfall
+  PACKAGE_NAME: scryfall
 
 jobs:
   build-and-publish:

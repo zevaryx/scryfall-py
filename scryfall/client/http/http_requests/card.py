@@ -1,12 +1,12 @@
 from typing import Any, Literal
 from uuid import UUID
 
-from pyfall.models.catalogs import Catalog
-from pyfall.client.route import Route
-from pyfall.models.cards import Card
-from pyfall.models.api import APIList
-from pyfall.models.rulings import Ruling
-from pyfall.models.internal.protocols import CanRequest
+from scryfall.models.catalogs import Catalog
+from scryfall.client.route import Route
+from scryfall.models.cards import Card
+from scryfall.models.api import APIList
+from scryfall.models.rulings import Ruling
+from scryfall.models.internal.protocols import CanRequest
 
 
 class CardRequests(CanRequest):

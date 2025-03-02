@@ -2,7 +2,7 @@ from typing import Literal
 
 from pydantic import BaseModel, HttpUrl
 
-from pyfall.models.enums import Color
+from scryfall.models.enums import Color
 
 
 class CardSymbol(BaseModel):

@@ -1,6 +1,6 @@
 import pytest
 
-from pyfall import Pyfall
+from scryfall import Scryfall
 
 test_set_uuid = "2f5f2509-56db-414d-9a7e-6e312ec3760c"
 test_set_name = "Core Set 2019"
@@ -9,13 +9,13 @@ test_set_code = "m19"
 
 @pytest.mark.asyncio
 async def test_get_all_sets():
-    client = Pyfall()
+    client = Scryfall()
     _ = await client.get_all_sets()
 
 
 @pytest.mark.asyncio
 async def test_get_set():
-    client = Pyfall()
+    client = Scryfall()
 
     set_ = await client.get_set_by_id(test_set_uuid)
     assert set_.name == test_set_name

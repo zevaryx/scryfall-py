@@ -2,7 +2,7 @@ import logging
 
 __version__ = "0.1.0"
 
-logger_name = "pyfall"
+logger_name = "scryfall"
 
 _logger = logging.getLogger(logger_name)
 

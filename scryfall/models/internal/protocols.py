@@ -1,7 +1,7 @@
 import typing
 from typing import Protocol, Any, TypeVar
 
-from pyfall.client.route import Route
+from scryfall.client.route import Route
 
 T_co = TypeVar("T", covariant=True)  # type: ignore
 

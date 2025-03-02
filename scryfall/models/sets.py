@@ -4,10 +4,10 @@ from uuid import UUID
 
 from pydantic import HttpUrl
 
-from pyfall.models.base import BaseAPIModel
+from scryfall.models.base import BaseAPIModel
 
 if TYPE_CHECKING:
-    from pyfall.models.api import APIList
+    from scryfall.models.api import APIList
 
 
 class Set(BaseAPIModel):

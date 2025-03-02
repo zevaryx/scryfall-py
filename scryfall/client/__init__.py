@@ -1,6 +1,6 @@
 from typing import Any
 
-from pyfall.const import __version__
+from scryfall.const import __version__
 
 import asyncio
 import logging
@@ -8,11 +8,11 @@ import time
 
 from httpx import AsyncClient
 
-from pyfall.const import get_logger
-from pyfall.client.error import LibraryException, HTTPException, ScryfallError, Forbidden, NotFound
-from pyfall.client.http.http_requests.card import CardRequests
-from pyfall.client.http.http_requests.set import SetRequests
-from pyfall.client.route import Route
+from scryfall.const import get_logger
+from scryfall.client.error import LibraryException, HTTPException, ScryfallError, Forbidden, NotFound
+from scryfall.client.http.http_requests.card import CardRequests
+from scryfall.client.http.http_requests.set import SetRequests
+from scryfall.client.route import Route
 
 
 class GlobalLock:
@@ -51,11 +51,11 @@ class GlobalLock:
         self._calls -= 1
 
 
-class Pyfall(CardRequests, SetRequests):
+class Scryfall(CardRequests, SetRequests):
     def __init__(self, logger: logging.Logger | None = None):
         self.__headers = {
             "Content-Type": "application/json",
-            "UserAgent": f"pyfall/{__version__}",
+            "UserAgent": f"scryfall/{__version__}",
             "Accept": "application/json",
         }
         self.__client: AsyncClient = None  # type: ignore

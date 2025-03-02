@@ -2,11 +2,11 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, HttpUrl, ValidationError, model_validator
 
-from pyfall.models.base import BaseAPIModel
-from pyfall.models.cards import Card
-from pyfall.models.rulings import Ruling
-from pyfall.models.sets import Set
-from pyfall.models.symbols import CardSymbol
+from scryfall.models.base import BaseAPIModel
+from scryfall.models.cards import Card
+from scryfall.models.rulings import Ruling
+from scryfall.models.sets import Set
+from scryfall.models.symbols import CardSymbol
 
 CLASS_LOOKUP = {"card": Card, "card_symbol": CardSymbol, "ruling": Ruling, "set": Set}
 

@@ -1,6 +1,6 @@
 import pytest
 
-from pyfall import Pyfall
+from scryfall import Scryfall
 
 test_card_uuid = "1e90c638-d4b2-4243-bbc4-1cc10516c40f"
 test_card_name = "Arcades, the Strategist"
@@ -8,7 +8,7 @@ test_card_name = "Arcades, the Strategist"
 
 @pytest.mark.asyncio
 async def test_get_card_by_all_ids():
-    client = Pyfall()
+    client = Scryfall()
     card = await client.get_card_by_id(test_card_uuid)
 
     assert card.name == test_card_name
@@ -29,7 +29,7 @@ async def test_get_card_by_all_ids():
 
 @pytest.mark.asyncio
 async def test_get_card_rulings():
-    client = Pyfall()
+    client = Scryfall()
     card = await client.get_card_by_id(test_card_uuid)
 
     rulings = await card.get_rulings()
@@ -38,7 +38,7 @@ async def test_get_card_rulings():
 
 @pytest.mark.asyncio
 async def test_search_card_all():
-    client = Pyfall()
+    client = Scryfall()
 
     with pytest.raises(ValueError):
         _ = await client.search_cards(q="_" * 1001)
@@ -63,7 +63,7 @@ async def test_search_card_all():
 
 @pytest.mark.asyncio
 async def test_cards_autocomplete():
-    client = Pyfall()
+    client = Scryfall()
 
     catalog = await client.cards_autocomplete(q="avacyn")
 
@@ -72,7 +72,7 @@ async def test_cards_autocomplete():
 
 @pytest.mark.asyncio
 async def test_get_random_card():
-    client = Pyfall()
+    client = Scryfall()
 
     card = await client.get_random_card()
     assert card is not None
@@ -80,7 +80,7 @@ async def test_get_random_card():
 
 @pytest.mark.asyncio
 async def test_card_set():
-    client = Pyfall()
+    client = Scryfall()
     card = await client.get_card_by_id(test_card_uuid)
     card_set = await card.get_set()
 
