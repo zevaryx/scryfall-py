@@ -10,6 +10,7 @@ class BaseAPIModel(BaseModel):
     """Base API model for base API calls."""
 
     _client: "Scryfall"
+    """Internal Scryfall client"""
 
     def __init__(self, **data):
         client: "Scryfall" = data["_client"]

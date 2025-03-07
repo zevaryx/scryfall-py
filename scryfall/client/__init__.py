@@ -10,8 +10,8 @@ from httpx import AsyncClient
 
 from scryfall.const import get_logger
 from scryfall.client.error import LibraryException, HTTPException, ScryfallError, Forbidden, NotFound
-from scryfall.client.http.http_requests.card import CardRequests
-from scryfall.client.http.http_requests.set import SetRequests
+from scryfall.client.http.card import CardRequests
+from scryfall.client.http.set import SetRequests
 from scryfall.client.route import Route
 
 
