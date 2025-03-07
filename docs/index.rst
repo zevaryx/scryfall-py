@@ -1,5 +1,5 @@
 Welcome to the scryfall-py documentation!
-=====================================
+=========================================
 
 .. toctree::
    :maxdepth: 2
