@@ -12,9 +12,6 @@ To get started, install ``scryfall-py``::
 Getting Started
 ***************
 
-Hashing Files
-~~~~~~~~~~~~~
-
 .. code-block:: python
 
     from scryfall import Scryfall
