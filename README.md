@@ -20,3 +20,7 @@ card = await client.search_cards_named("Arcades, the Strategist")
 ```
 
 This will fetch the card Arcades, the Strategist from the Scryfall API
+
+## Documentation
+
+Documentation is located at [GitHub Pages](https://zevaryx.github.io/scryfall-py/)
